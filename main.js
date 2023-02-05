@@ -1,17 +1,11 @@
 const Benchmark = require('benchmark')
 
-const { deepJson, deepMap, deepLodash } = require('./functions')
+const { deepJson, deepStructure, deepLodash } = require('./functions')
 
-const originData = [
-  {
-    key: 'value1',
-    key2: 'value2'
-  },
-  {
-    key3: false,
-    key4: undefined
-  }
-]
+const originData = {
+  key1: 'value1',
+  key2: 'value2',
+}
 
 const suite = new Benchmark.Suite
 
@@ -22,11 +16,11 @@ suite
   .add('JSON', () => {
     deepJson(originData)
   })
+  .add('Structure', () => {
+    deepStructure(originData)
+  })
   .add('Lodash', () => {
     deepLodash(originData)
-  })
-  .add('Map', () => {
-    deepMap(originData)
   })
   .on('cycle', (event) => {
     console.log(String(event.target))

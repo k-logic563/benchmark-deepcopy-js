@@ -5,13 +5,13 @@ const deepJson = (originData) => {
   for (let i = 0; i < 10000; i++) {
     data = JSON.stringify(originData)
   }
-  return data
+  return JSON.parse(data)
 }
 
-const deepMap = (originData) => {
+const deepStructure = (originData) => {
   let data = null
   for (let i = 0; i < 10000; i++) {
-    data = originData.map(d => ({ ...d }))
+    data = structuredClone(originData)
   }
   return data
 }
@@ -26,6 +26,6 @@ const deepLodash = (originData) => {
 
 module.exports =  {
   deepJson,
-  deepMap,
+  deepStructure,
   deepLodash
 }
